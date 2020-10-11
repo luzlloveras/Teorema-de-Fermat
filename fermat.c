@@ -9,22 +9,25 @@ int POTENCIA(int, int);
 int FERMAT(int, int);
 
 int main() {
-    int A, P;
-    for(A=2; A<9; A++) {
-        for(P=3; P<8; P++) {
-            if(FERMAT(A, P)==1)
-                printf("El teoreama se cumple para %d y %d \n", A, P);
-            else
-                printf("El teoreama NO se cumple para %d y %d \n", A, P);
-            P++;
+    int A, P, flag=0;
+    for(A=2; A<9 && flag==0; A++) {
+        for(P=3; P<8; P+=2) {
+            if(FERMAT(A, P)==0)
+                flag = 1;
         }
     }
+    if(flag == 0)
+        printf("El teorema se cumple\n");
+    else
+        printf("El teorema NO se cumple\n");
+
     return 0;
 }
 
 // genera la potencia de base elevado al exponente
 int POTENCIA(int base, int exponente) {
-    int i, resultado=base;
+    int i, resultado;
+    resultado = base;
     for(i=1;i<exponente;i++) {
         resultado*=base;
     }
